@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIT Vellore Events Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header Section with Navigation -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>VIT<span>Events</span></h1>
+      </div>
+      
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#events">Fest & Events</a></li>
+          <li><a href="#about">About VIT</a></li>
+          <li><a href="#contact">Reach Us</a></li>
+          <li><a href = "https://github.com/Mridul5678">Developer</a></li>
+        </ul>
+      </nav>
+      
+      <div class="auth-buttons">
+        <button id="signupBtn" class="btn btn-primary btn-outline">Login</button>
+      </div>
+      
+      <div class="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <label class="toggle-switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+      </div>
+      
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Experience Vibrant Campus Life at VIT Vellore</h1>
+        <p>Join the most exciting technical and cultural fests, workshops, and competitions. Discover opportunities to showcase your talents and enhance your skills at Tamil Nadu's premier engineering institution.</p>
+        <button class="btn btn-primary btn-lg" id="exploreBtn">Discover Events</button>
+        <button class="btn btn-primary btn-lg" id="heroLogin">Login</button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Events Section - Moved up for better user flow -->
+  <section id="events" class="events-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured VIT Events</h2>
+        <div class="filter-options">
+          <div class="search-box">
+            <input type="text" id="searchEvents" placeholder="Search VIT events...">
+            <i class="fas fa-search"></i>
+          </div>
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="tech">Technical Fests</option>
+            <option value="cultural">Cultural Events</option>
+            <option value="sports">Sports Tournaments</option>
+            <option value="academic">Academic Conferences</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="events-grid" id="eventsContainer">
+        <!-- Events will be dynamically loaded here -->
+      </div>
+      
+      <div class="load-more">
+        <button class="btn btn-outline btn-lg" id="loadMoreBtn">View More Events</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About VIT Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Vellore Institute of Technology</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Excellence in Education Since 1984</h3>
+          <p>VIT Vellore is consistently ranked among the top engineering institutions in India, known for its academic rigor, research facilities, and vibrant campus life. Our event platform connects you with the dynamic ecosystem of technical clubs, cultural societies, and departmental activities.</p>
+          <p>From Gravitas and Riviera to club & chapter events, we offer platforms for innovation, learning, and showcasing talent across disciplines.</p>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="stat-number">200+</span>
+              <span class="stat-label">Annual Events</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">35,000+</span>
+              <span class="stat-label">VITians</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">120+</span>
+              <span class="stat-label">Student Chapters</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://vit.ac.in/system/files/Anna%20Auditorium2.JPG" alt="VIT Vellore Campus">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section - Restructured form and contact info -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Connect With Us</h2>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Campus Address</h3>
+              <p>Vellore Institute of Technology, Vellore, Tamil Nadu 632014, India</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>events.coordinator@vit.ac.in</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Helpline</h3>
+              <p>+91 416 220 2020</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.facebook.com/Vellore.Institute.of.Technology/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/VIT_univ?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/vellore_vit/?hl=en" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/school/vellore-institute-of-technology/posts/?feedView=all" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Send your queries</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+              <span class="error-message" id="nameError"></span>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Your VIT Email" required>
+              <span class="error-message" id="emailError"></span>
+            </div>
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder="Query Subject" required>
+              <span class="error-message" id="subjectError"></span>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+              <span class="error-message" id="messageError"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit Query</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section - Better organized -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>VIT<span>Events</span></h2>
+          <p>The official events portal of Vellore Institute of Technology.</p>
+          <div class="footer-newsletter">
+            <h3>Organize an Event</h3>
+            <p>Are you a VIT club or chapter wanting to host an event?</p>
+            <button id="createEventBtn" class="btn btn-primary">Submit Proposal</button>
+          </div>
+        </div>
+        <div class="footer-links-container">
+          <div class="footer-links">
+            <h3>Quick Access</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#events">Fest & Events</a></li>
+              <li><a href="#about">About VIT</a></li>
+              <li><a href="#contact">Reach Us</a></li>
+              <li><a href = "https://github.com/Mridul5678">Developer</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Student Resources</h3>
+            <ul>
+              <li><a href="https://vit.ac.in/campuslife/fests">Event Guidelines</a></li>
+              <li><a href="https://vtop.vit.ac.in/vtop/login">VTOP Login</a></li>
+              <li><a href="https://vit.ac.in/academic-council-minutes">Academics</a></li>
+              <li><a href="https://vit.ac.in/campuslife/studentswelfare">Student Welfare</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Vellore Institute of Technology. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals - Grouped together -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Student Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">VIT Email</label>
+          <input type="email" id="loginEmail" name="email" required>
+          <span class="error-message" id="loginEmailError"></span>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" required>
+          <span class="error-message" id="loginPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </div>
+        <p class="form-footer">New student? <a href="#" id="switchToSignup">Register here</a></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Student Registration</h2>
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" name="name" required>
+          <span class="error-message" id="signupNameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">VIT Email</label>
+          <input type="email" id="signupEmail" name="email" required>
+          <span class="error-message" id="signupEmailError"></span>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" name="password" required>
+          <span class="error-message" id="signupPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <label for="signupConfirmPassword">Confirm Password</label>
+          <input type="password" id="signupConfirmPassword" name="confirmPassword" required>
+          <span class="error-message" id="signupConfirmPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+        <p class="form-footer">Already registered? <a href="#" id="switchToLogin">Login here</a></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="createEventModal">
+    <div class="modal-content modal-lg">
+      <span class="close-modal">&times;</span>
+      <h2>Event Proposal Form</h2>
+      <form id="createEventForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventTitle">Event Name</label>
+            <input type="text" id="eventTitle" name="title" required>
+            <span class="error-message" id="eventTitleError"></span>
+          </div>
+          <div class="form-group">
+            <label for="eventCategory">Event Type</label>
+            <select id="eventCategory" name="category" required>
+              <option value="">Select Type</option>
+              <option value="tech">Technical</option>
+              <option value="cultural">Cultural</option>
+              <option value="sports">Sports</option>
+              <option value="academic">Academic</option>
+            </select>
+            <span class="error-message" id="eventCategoryError"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventDate">Event Date</label>
+            <input type="date" id="eventDate" name="date" required>
+            <span class="error-message" id="eventDateError"></span>
+          </div>
+          <div class="form-group">
+            <label for="eventTime">Event Time</label>
+            <input type="time" id="eventTime" name="time" required>
+            <span class="error-message" id="eventTimeError"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="eventVenue">Preferred Venue</label>
+          <input type="text" id="eventVenue" name="venue" required>
+          <span class="error-message" id="eventVenueError"></span>
+        </div>
+        <div class="form-group">
+          <label for="eventImage">Event Poster URL</label>
+          <input type="url" id="eventImage" name="image" required>
+          <span class="error-message" id="eventImageError"></span>
+        </div>
+        <div class="form-group">
+          <label for="eventDescription">Event Description</label>
+          <textarea id="eventDescription" name="description" rows="4" required></textarea>
+          <span class="error-message" id="eventDescriptionError"></span>
+        </div>
+        <div class="form-group">
+          <label for="eventCapacity">Expected Participants</label>
+          <input type="number" id="eventCapacity" name="capacity" min="1" required>
+          <span class="error-message" id="eventCapacityError"></span>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Submit for Approval</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="registerEventModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Register for <span id="registerEventTitle"></span></h2>
+      <form id="registerEventForm">
+        <input type="hidden" id="eventId" name="eventId">
+        <div class="form-group">
+          <label for="registerName">Full Name</label>
+          <input type="text" id="registerName" name="name" required>
+          <span class="error-message" id="registerNameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">VIT Email</label>
+          <input type="email" id="registerEmail" name="email" required>
+          <span class="error-message" id="registerEmailError"></span>
+        </div>
+        <div class="form-group">
+          <label for="registerPhone">Mobile Number</label>
+          <input type="tel" id="registerPhone" name="phone" required>
+          <span class="error-message" id="registerPhoneError"></span>
+        </div>
+        <div class="form-group">
+          <label for="registerStudentId">Registration Number</label>
+          <input type="text" id="registerStudentId" name="studentId" required>
+          <span class="error-message" id="registerStudentIdError"></span>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Confirm Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <i class="fas fa-check-circle toast-icon success"></i>
+      <div class="toast-message">Registration successful!</div>
+    </div>
+    <div class="toast-progress"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
