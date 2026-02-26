@@ -1,6 +1,6 @@
-# VITEvents - Campus Life Portal
+# VITEvents - Campus Events Registration Portal
 
-**VITEvents** is a sleek, responsive web application built to streamline how students discover and register for events at VIT Vellore. Whether it's a 24-hour hackathon in Anna Auditorium or a cultural night at the SJT Ground, this portal brings the vibrant campus life to your fingertips.
+**VITEvents** is a sleek, responsive web application built to streamline how students discover and register for events at VIT Vellore. Whether it's a hackathon or a Cultural Event, this portal brings the vibrant campus life to your fingertips.
 
 ## 🚀 Key Features
 
@@ -35,4 +35,5 @@ To run this project locally:
 This project was created as a part of our Web Development Project.
 
 ---
-**Maintained by Mridul Kishanpuria** *Inspired by the vibrant culture of VIT Vellore.*
+**Maintained by Mridul Kishanpuria** 
+*Inspired by the vibrant culture of VIT Vellore.*
