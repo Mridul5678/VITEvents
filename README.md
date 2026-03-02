@@ -14,9 +14,7 @@
 ## 🛠️ Tech Stack
 
 * **Frontend:** HTML5, CSS3 (Custom properties/Variables)
-* **Logic:** Vanilla JavaScript (ES6+)
-* **Icons:** Font Awesome
-* **Fonts:** Google Fonts (Roboto)
+* **Logic:** Vanilla JavaScript
 
 ## 📸 Preview
 
