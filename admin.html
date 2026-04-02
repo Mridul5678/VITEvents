@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VITEvents Admin</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    h1 { color: #333; }
+    .tab-buttons { margin-bottom: 20px; }
+    .tab-btn {
+      padding: 10px 24px; margin-right: 10px; border: none;
+      background: #ccc; cursor: pointer; border-radius: 4px; font-size: 15px;
+    }
+    .tab-btn.active { background: #1db954; color: white; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+    th { background: #222; color: white; padding: 12px; text-align: left; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f9f9f9; }
+    .loading { color: #888; font-style: italic; margin: 20px 0; }
+    .error { color: red; margin: 20px 0; }
+    #password-screen { max-width: 320px; margin: 100px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    #password-screen input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+    #password-screen button { width: 100%; padding: 10px; background: #1db954; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+    #dashboard { display: none; }
+    .count-badge { background: #1db954; color: white; padding: 2px 10px; border-radius: 20px; font-size: 13px; margin-left: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- Password Screen -->
+<div id="password-screen">
+  <h2>Admin Login</h2>
+  <input type="password" id="adminPass" placeholder="Enter admin password" />
+  <button onclick="checkPassword()">Login</button>
+  <p id="passError" style="color:red; display:none;">Wrong password</p>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+  <h1>VITEvents Admin Dashboard</h1>
+
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="showTab('registrations')">
+      Registrations <span class="count-badge" id="reg-count">0</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('proposals')">
+      Proposals <span class="count-badge" id="prop-count">0</span>
+    </button>
+  </div>
+
+  <div id="registrations-tab">
+    <div class="loading" id="reg-loading">Loading registrations...</div>
+    <table id="reg-table" style="display:none">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Timestamp</th>
+          <th>Name</th>
+          <th>VIT Email</th>
+          <th>Mobile</th>
+          <th>Reg Number</th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody id="reg-body"></tbody>
+    </table>
+  </div>
+
+  <div id="proposals-tab" style="display:none">
+    <div class="loading" id="prop-loading">Loading proposals...</div>
+    <table id="prop-table" style="display:none">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Timestamp</th>
+          <th>Event Name</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Venue</th>
+          <th>Participants</th>
+        </tr>
+      </thead>
+      <tbody id="prop-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const REG_CSV_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLZg66pZoPfGXzzSOBfFsSCxG5lH2vx1-1pcMIHVte3DoDQVeDfU2vhLxJPndj-1FBLHuZsQTEcZkn/pub?gid=0&single=true&output=csv";
+  const PROP_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLZg66pZoPfGXzzSOBfFsSCxG5lH2vx1-1pcMIHVte3DoDQVeDfU2vhLxJPndj-1FBLHuZsQTEcZkn/pub?gid=1591269944&single=true&output=csv";
+
+  const ADMIN_PASSWORD = "mriduladmin"; // change this to whatever you want
+
+  function checkPassword() {
+    const pass = document.getElementById("adminPass").value;
+    if (pass === ADMIN_PASSWORD) {
+      document.getElementById("password-screen").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+      loadRegistrations();
+    } else {
+      document.getElementById("passError").style.display = "block";
+    }
+  }
+
+  // Allow pressing Enter key on password field
+  document.getElementById("adminPass").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  function parseCSV(text) {
+    const lines = text.trim().split("\n");
+    return lines.slice(1).map(line => {
+      // Handle commas inside quoted fields
+      const cols = [];
+      let current = "", inQuotes = false;
+      for (let ch of line) {
+        if (ch === '"') inQuotes = !inQuotes;
+        else if (ch === ',' && !inQuotes) { cols.push(current.trim()); current = ""; }
+        else current += ch;
+      }
+      cols.push(current.trim());
+      return cols;
+    });
+  }
+
+  async function loadRegistrations() {
+    try {
+      const res = await fetch(REG_CSV_URL);
+      const text = await res.text();
+      const rows = parseCSV(text);
+
+      document.getElementById("reg-loading").style.display = "none";
+      document.getElementById("reg-count").textContent = rows.length;
+
+      const tbody = document.getElementById("reg-body");
+      tbody.innerHTML = rows.map((r, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${r[0] || ""}</td>
+          <td>${r[1] || ""}</td>
+          <td>${r[2] || ""}</td>
+          <td>${r[3] || ""}</td>
+          <td>${r[4] || ""}</td>
+          <td>${r[5] || ""}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("reg-table").style.display = "table";
+    } catch (err) {
+      document.getElementById("reg-loading").textContent = "Error loading data. Check your CSV URL.";
+      document.getElementById("reg-loading").style.color = "red";
+    }
+  }
+
+  async function loadProposals() {
+    try {
+      const res = await fetch(PROP_CSV_URL);
+      const text = await res.text();
+      const rows = parseCSV(text);
+
+      document.getElementById("prop-loading").style.display = "none";
+      document.getElementById("prop-count").textContent = rows.length;
+
+      const tbody = document.getElementById("prop-body");
+      tbody.innerHTML = rows.map((r, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${r[0] || ""}</td>
+          <td>${r[1] || ""}</td>
+          <td>${r[2] || ""}</td>
+          <td>${r[3] || ""}</td>
+          <td>${r[5] || ""}</td>
+          <td>${r[8] || ""}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("prop-table").style.display = "table";
+    } catch (err) {
+      document.getElementById("prop-loading").textContent = "Error loading data. Check your CSV URL.";
+      document.getElementById("prop-loading").style.color = "red";
+    }
+  }
+
+  function showTab(tab) {
+    document.getElementById("registrations-tab").style.display = tab === "registrations" ? "block" : "none";
+    document.getElementById("proposals-tab").style.display = tab === "proposals" ? "block" : "none";
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    event.target.classList.add("active");
+
+    if (tab === "proposals") loadProposals();
+  }
+</script>
+</body>
+</html>
